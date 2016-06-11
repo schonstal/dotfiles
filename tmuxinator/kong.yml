@@ -1,0 +1,36 @@
+# ~/.tmuxinator/kong.yml
+
+name: kong
+root: ~/
+pre: cd work/dev_environment/dev && vagrant up && cd ~/
+
+windows:
+  - kong-rails:
+      root: ~/work/kongregate
+      layout: 8869,270x73,0,0{80x73,0,0[80x36,0,0,0,80x36,0,37,2],189x73,81,0,1}
+      panes:
+        - local:
+          - #bash
+        - vagrant:
+          - cd ~/work/dev_environment/dev
+          - vagrant ssh
+          - cdk
+        - vim:
+          - nvim
+
+  - kong-rails-vagrant:
+      root: ~/work/dev_environment/dev
+      layout: even-horizontal
+      panes:
+        - unicorn:
+          - sleep 1
+          - cd ~/work/dev_environment/dev
+          - vagrant ssh
+          - cdk
+          - bundle exec rails s -p 4999
+        - dj:
+          - sleep 2
+          - cd ~/work/dev_environment/dev
+          - vagrant ssh
+          - cdk
+          - bundle exec rake jobs:work
