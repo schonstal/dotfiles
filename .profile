@@ -46,7 +46,7 @@ alias fixvb='sudo /Library/StartupItems/VirtualBox/VirtualBox restart'
 #  fi
 #}
 
-export EDITOR="mvim"
+export EDITOR="nvim"
 
 function update_kwak {
   local START_DIRECTORY=`pwd`
