@@ -13,6 +13,7 @@ alias gl="git log --pretty=format:'%C(yellow)%h%Creset %s %Cblue%d%Creset' --gra
 alias grb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 alias srb='grb | fzf | xargs git checkout'
 alias gpu='git push -u origin `git rev-parse --abbrev-ref HEAD`'
+alias gd='git diff --color'
 
 #escape
 alias escape_apk='adt -package -target apk-debug -storetype pkcs12 -keystore src/cert.crt escape.apk escape-app-android.xml escape.swf icons -extdir lib'
