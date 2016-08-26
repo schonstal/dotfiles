@@ -122,10 +122,7 @@ export FLEX_SDK_PATH='/Users/schonstal/flex_sdk_4.15/'
 export KONGREGATE_SDK_PATH='/Users/schonstal/bin/kongregate-sdk-1.2.1.6-edge'
 export IOS_KEYSTORE_PASSWORD=''
 export TPT_SWRVE_API_KEY="aaaa-aaaa-aaaa-aaaa"
-export FZF_DEFAULT_COMMAND='
-  (git ls-tree -r --name-only HEAD ||
-   find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
-      sed s/^..//) 2> /dev/null'
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
 . $(brew --prefix)/etc/bash_completion
 
