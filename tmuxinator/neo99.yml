@@ -1,0 +1,17 @@
+# ~/.tmuxinator/neo99.yml
+
+name: neo99
+root: ~/
+
+windows:
+  - ember:
+      root: ~/ember/Neo99
+      layout: 8869,270x73,0,0{80x73,0,0[80x36,0,0,0,80x36,0,37,2],189x73,81,0,1}
+      panes:
+        - build:
+          - #bash
+        - source:
+          - cd source
+        - vim:
+          - cd source
+          - nvim
