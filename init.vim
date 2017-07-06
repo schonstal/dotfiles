@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'rizzatti/dash.vim'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
@@ -22,6 +23,8 @@ Plug 'junegunn/fzf.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'jdonaldson/vaxe'
 Plug 'jgdavey/tslime.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'janko-m/vim-test'
 
 call plug#end()
 
@@ -78,6 +81,22 @@ let g:neomake_warning_sign = {
             \ }
 
 let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_javascript_enabled_makers = ['eslint']
 
-nmap <leader>r :call Send_to_Tmux("testunit " . expand("%") . "\n")<CR>
+autocmd! BufWritePost * Neomake
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+
+let test#strategy = 'tslime'
+nmap <silent> <Leader>r :TestNearest<CR>
+nmap <silent> <Leader>R :TestFile<CR>
+nmap <silent> <Leader>a :TestSuite<CR>
+nmap <silent> <Leader>l :TestLast<CR>
+nmap <silent> <Leader>g :TestVisit<CR>
+nmap <silent> <leader>d <Plug>DashSearch
+
+function! test#ruby#minitest#executable() abort
+  return 'bundle exec ruby'
+endfunction
+
+let whitespace_blacklist = ['diff']
+autocmd BufWritePre * if index(whitespace_blacklist, &ft) < 0 |:%s/\s\+$//e

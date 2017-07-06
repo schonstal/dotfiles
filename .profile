@@ -14,6 +14,7 @@ alias grb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refnam
 alias srb='grb | fzf | xargs git checkout'
 alias gpu='git push -u origin `git rev-parse --abbrev-ref HEAD`'
 alias gd='git diff --color'
+alias g='git status'
 
 #escape
 alias escape_apk='adt -package -target apk-debug -storetype pkcs12 -keystore src/cert.crt escape.apk escape-app-android.xml escape.swf icons -extdir lib'
@@ -77,7 +78,7 @@ function stl {
     echo -e "$1 is now $STATUS"
   fi
   echo -en "\033[1;37mWorking sentinels:\033[0m "
-  echo "show_ads cache_classes error_pages screw_routes disable_ssl"
+  echo "show_ads cache_classes error_pages screw_routes disable_ssl record_analytics"
   echo -en "\033[1;37mEnabled sentinels:\033[0m "
   echo -n `ls $SENTINEL_DIRECTORY`
   echo
@@ -85,7 +86,7 @@ function stl {
 
 function _stl
 {
-  COMPREPLY=(`compgen -W 'show_ads cache_classes error_pages screw_routes disable_ssl' -- ${COMP_WORDS[COMP_CWORD]}`)
+  COMPREPLY=(`compgen -W 'show_ads cache_classes error_pages screw_routes disable_ssl record_analytics' -- ${COMP_WORDS[COMP_CWORD]}`)
   return 0
 }
 
@@ -126,7 +127,10 @@ export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
 . $(brew --prefix)/etc/bash_completion
 
+set show-mode-in-prompt on
+
 source ~/.fzf.bash
 
 source ~/.aws-secrets
 . ~/.secrets
+eval "$(nodenv init -)"
